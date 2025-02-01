@@ -41,7 +41,7 @@ if ( Test-Path -LiteralPath $stable ) {
             $tmpID=""
             $user=""
             $r=""
-            $tkn = Select-String -Path $file -Pattern "[a-zA-Z0-9_-]{24}\.[a-zA-Z0-9_-]{6}\.[a-zA-Z0-9_-]*\"" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
+            $tkn = Select-String -Path $file -Pattern "[a-zA-Z0-9_-]{24}\.[a-zA-Z0-9_-]{6}\.[a-zA-Z0-9_-]*" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
             echo $tkn
             if ($tkn.length -gt 2) {
                 try {
