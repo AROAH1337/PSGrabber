@@ -16,7 +16,7 @@ if ( Test-Path -LiteralPath $stable ) {
     Foreach ($file in $files)
     {
                 echo $file
-                $mfa = Select-String -Path $file -Pattern "mfa\\.[a-zA-Z0-9_\\-]{84}" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
+                $mfa = Select-String -Path $file -Pattern "mfa\.[a-zA-Z0-9_-]{84}" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
                 echo $mfa
         if ($mfa.length -gt 1) {
             try {
@@ -41,7 +41,7 @@ if ( Test-Path -LiteralPath $stable ) {
             $tmpID=""
             $user=""
             $r=""
-            $tkn = Select-String -Path $file -Pattern "[a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27}" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
+            $tkn = Select-String -Path $file -Pattern "[a-zA-Z0-9_-]{24}\.[a-zA-Z0-9_-]{6}\.[a-zA-Z0-9_-]*" -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
             echo $tkn
             if ($tkn.length -gt 2) {
                 try {
